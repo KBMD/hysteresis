@@ -1,0 +1,9 @@
+  2  Number of Abscissa
+  0  Number of model vectors
+  1  Number of data cols
+  3  Number of Priors
+R               0.0000E+00  1.0000E+00  3.0000E+00  1.5000E+00 Gaussian(e)     NotOrdered(ne) NonLinear      
+K2              0.0000E+00  5.0000E-01  1.0000E+00  2.5000E-01 Uniform(e)      NotOrdered(ne) NonLinear      
+k2a             0.0000E+00  2.5000E-01  1.0000E+00  2.5000E-01 Uniform(e)      NotOrdered(ne) NonLinear      
+  1  Number of Derived parameters
+DVR

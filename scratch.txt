@@ -1,0 +1,24 @@
+Stuff left out
+==============
+
+	double interpolate(double fraction, double yofa, double yofb) {
+	// linear interpolation of y(a+fraction(b-a)) given fraction, y(a) and y(b)
+	// WARNING: assumes a < b
+		return (yofa+fraction*(yofb-yofa)) ;
+	}
+	
+
+
+	void runge4(double x, double *y, double step) {
+	// Runge-Kutta order 4 -- note changes y
+		double halfstep=step/2.0,                       // the midpoint of the step interval 
+				t1, t2, t3, rk1, rk2, rk3, rk4;  // temporary storage
+		t1=y+(rk1=step*yprime(x, y))/2;
+		t2=y+(rk2=step*yprime(x+halfstep, t1))/2;
+		t3=y+(rk3=step*yprime(x+halfstep, t2));
+		rk4=      step*yprime(x+step, t3);
+		y += step*(rk1+2*rk2+2*rk3+rk4)/6.0;
+	}
+
+See http://www.maths.tcd.ie/~ryan/TeachingArchive/161/teaching/harm_osc_rk.c.html
+and http://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods

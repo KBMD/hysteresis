@@ -1,0 +1,11 @@
+  2  Number of Abscissa
+  1  Number of model vectors
+  1  Number of data cols
+  4  Number of Priors
+ke0             1.0000E-03  9.5500E-02  1.9000E-01  1.0000E+02 Uniform(e)      NotOrdered(ne) NonLinear      
+nHill           1.3000E+01  1.3000E+01  1.3000E+01  1.5000E+00 Parameter(e)    NotOrdered(ne) Parameter      
+q               2.4620E+00  2.4620E+00  2.4620E+00  2.5000E-01 Parameter(e)    NotOrdered(ne) Parameter      
+emax           -1.0000E+06  0.0000E+00  1.0000E+06  3.0000E+05 Gaussian(ne)    NotOrdered(ne) Amplitude      
+  2  Number of Derived parameters
+thalf_effect
+ec50
