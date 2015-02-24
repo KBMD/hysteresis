@@ -37,8 +37,10 @@ void model_(int *CurSet,
 	for (CurEntry = 0; CurEntry < *TotalDataValues; CurEntry++) {
 	// this for loop estimates E(Ce(t)), using the current parameter values
 		if ( CurEntry == 0 ){
-			time = Abscissa[(time_index = 0)];	// index to time  values to be read from Abscissa 0
-			Cp   = Abscissa[(Cp_index   = 1)]; 	// index to Cp(t) values to be read from Abscissa 1
+			time_index = 0; 	// index to time  values to be read from Abscissa 0
+			Cp_index   = 1; 	// index to Cp(t) values to be read from Abscissa 1
+			time = Abscissa[time_index];
+			Cp   = Abscissa[Cp_index  ];
 			Ce = 0.0;  	// assumes no drug is in the effect compartment until time = 0
 		} else {
 			time_previous = time;
@@ -58,7 +60,6 @@ void model_(int *CurSet,
 		emax_j           = CurEntry;  // + 0*(*TotalDataValues)   // model vector 0
 //		e0_j             = CurEntry + 1*(*TotalDataValues);       // model vector 1 
 // ... and so on, if more model vectors ...
-
 		Signal[emax_j]   = pow(Ce, nHill) / ( pow(Ce, nHill) + pow(ec50, nHill) ) ;
 			// this is the first marginalized signal vector, whose amplitude will be called Emax
 //		Signal[e0_j]     = 1.0;  
