@@ -1,0 +1,8 @@
+  1  Number of Abscissa
+  3  Number of model vectors
+  1  Number of data cols
+  3  Number of Priors
+Constant       -1.0000E+06  0.0000E+00  1.0000E+06  3.0000E+05 Gaussian(ne)    NotOrdered(ne) Amplitude      
+LinearAmp      -1.0000E+06  0.0000E+00  1.0000E+06  3.0000E+05 Gaussian(ne)    NotOrdered(ne) Amplitude      
+QuadAmp        -1.0000E+06  0.0000E+00  1.0000E+06  3.0000E+05 Gaussian(ne)    NotOrdered(ne) Amplitude      
+  0  Number of Derived parameters

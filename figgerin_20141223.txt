@@ -1,0 +1,38 @@
+from cell D32 in effect_compartment_modeling_20141025.xlsx :
+=IF(B32<=$B$6,2*$F$10/(1+EXP(-$F$11*B32))-$F$10,((2*$F$10/(1+EXP(-$F$11*$B$6))-$F$10)-IF($B$11,$B$4,0))*(2^(($B$6-B32)/$F$15)+2^(($B$6-B32)/$F$17))/2+IF($B$11,$B$4,0))
+
+[B32<=$B$6]
+	  2*$F$10/(1+EXP(-$F$11*B32 ))-$F$10,
+
+[B32>$B$6]
+IF(maint=TRUE):
+	((2*$F$10/(1+EXP(-$F$11*$B$6))-$F$10)-$B$4)*(2^(($B$6-B32)/$F$15)+2^(($B$6-B32)/$F$17))/2 + $B$4
+[ = (Cpeak                         -Cinfinity)*(decay from alpha and from beta)               + Cinfinity ]
+													[ the /2 is part of averaging the two decays ]
+IF(maint=FALSE):
+	((2*$F$10/(1+EXP(-$F$11*$B$6))-$F$10) - 0 )*(2^(($B$6-B32)/$F$15)+2^(($B$6-B32)/$F$17))/2 +  0
+
+================================================================================
+
+Cp(t) = { if t<= LoadTime = 10 [min] :  
+		 2*A/(1+exp{-2*m0*       t/A})-A 										= (A/denom)*[2 - denom]
+
+	{ if t > LoadTime and maint = TRUE  : 
+		(2*A/(1+exp{-2*m0*LoadTime/A}) + CpTarget)*(2 - 2^(-(t-LoadTime)/thalfalpha) + 2^(-(t-LoadTime)/thalf))/2
+
+	{ if t > LoadTime and maint = FALSE :
+		2*A/(1+exp{-2*m0*(LoadTime)/A) 
+
+t = time [min]
+CpTarget = 600 [ng/mL]
+thalfalpha = 1 [min]	(Natalia's spreadsheet says ~8.3min)
+thalf = 10.6 [min]   	(Natalia's spreadsheet says 1.5 hr = 90 min; but Cp(20min)~1100, Cp(40min)~850, and Cp(70min)~600 [from Black et al 2003, Fig. 3])
+Cpeak  	= Cp at end of loading dose [ng/mL] = est. 3100 (trying to describe Cp(t) from Black et al 2003)
+
+A 	= originally, "A" in the pencil-and-paper function describing Cp(t) over the first 10 min = what Cp(t) would be in the limit as t-> infinity if that function were accurate forever
+	= now, Cpeak*(Ctarget/(600ng/mL)) = Cpeak when using the 600ng/mL target
+[ng/mL]
+
+m0 	= initial slope  [(ng/mL)/min]  = est. 1023 (trying to describe Cp(t) from Black et al 2003)
+a 	= 2*(initial slope)/A = 2*m0/A   [1/min]
+
