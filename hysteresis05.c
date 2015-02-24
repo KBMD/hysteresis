@@ -14,11 +14,11 @@ void model_(int *CurSet,
 	double  Abscissa[],
 	double  Signal[]){
 
-	int CurEntry, time_index, Cp_index, time_previous, Cp_previous, emax_j /* , e0_j */ ;  
+	int CurEntry, time_index, Cp_index, emax_index /* , e0_index */ ;  
 	  // all these are indices
-	double        ke0,   time,  thalf_effect, nHill, q,            dt,     emax,  e0 ;
-	  // units:  1/min,  min,   min,          none,  log10(ng/ml), min,    units of effect
-	double        ec50, Cp, Ce, Ce_previous ;
+	double        ke0,   time,  time_previous, thalf_effect, nHill, q,            dt,     emax,  e0 ;
+	  // units:  1/min,  min,   min,                         none,  log10(ng/ml), min,    units of effect
+	double        ec50, Cp, Ce, Cp_previous, Ce_previous ;
 	  // units:    ng/ml 
 	  // Cp is the concentration of drug over time in the plasma, read in from a second abscissa column
 	  // Ce represents the concentration of drug [over time] in the modeled effect compartment
@@ -27,7 +27,6 @@ void model_(int *CurSet,
 	nHill = Params[1];  // the Hill coefficient n that dictates the steepness of the plot of Ce -> effect
 	q     = Params[2];  // q := log10(EC50), defined for convenience so that the Bayes Analysis Toolbox will
 		// sample the EC50 prior prob. distribution more evenly (as traditionally plotted on a log axis)
-	// e0 = Params[3];  
 
 	thalf_effect = log(2)/ke0;  // natural logarithm i.e. ln(2)
 	Derived[0] = thalf_effect;
@@ -57,12 +56,12 @@ void model_(int *CurSet,
 
 		// Index the Signal matrix, size *TotalDataValues x *NoOfModelVectors, 
 		// putting the values where the calling program expects to find them
-		emax_j           = CurEntry;  // + 0*(*TotalDataValues)   // model vector 0
-//		e0_j             = CurEntry + 1*(*TotalDataValues);       // model vector 1 
+		emax_index           = CurEntry;  // + 0*(*TotalDataValues)   // model vector 0
+//		e0_index             = CurEntry + 1*(*TotalDataValues);       // model vector 1 
 // ... and so on, if more model vectors ...
-		Signal[emax_j]   = pow(Ce, nHill) / ( pow(Ce, nHill) + pow(ec50, nHill) ) ;
+		Signal[emax_index]   = pow(Ce, nHill) / ( pow(Ce, nHill) + pow(ec50, nHill) ) ;
 			// this is the first marginalized signal vector, whose amplitude will be called Emax
-//		Signal[e0_j]     = 1.0;  
+//		Signal[e0_index]     = 1.0;  
 // this is the second marginalized signal vector, [1 1 1 ... 1], amplitude E0 (i.e. baseline effect)
 		
 		}
